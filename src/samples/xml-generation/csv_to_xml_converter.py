@@ -3,9 +3,9 @@ import xml.dom.minidom as md
 import xml.etree.ElementTree as ET
 
 from csv_reader import CSVReader
-from entities.country import Country
-from entities.team import Team
-from entities.player import Player
+from entities.sample.country import Country
+from entities.sample.team import Team
+from entities.sample.player import Player
 
 
 class CSVtoXMLConverter:
