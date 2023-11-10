@@ -1,1 +1,24 @@
 # Id, Company Name, Model Name
+import xml.etree.ElementTree as ET
+
+
+class Car:
+
+    def __init__(self, name):
+        Car.counter += 1
+        self._id = Car.counter
+        self._name = name
+            
+    # def to_xml(self):
+    #     el = ET.Element("Country")
+    #     el.set("id", str(self._id))
+    #     el.set("name", self._name)
+    #     return el
+
+    # def get_id(self):
+    #     return self._id
+
+    # def __str__(self):
+    #     return f"name: {self._name}, id:{self._id}"
+    
+Car.counter = 0

@@ -1,12 +1,18 @@
 import csv
 import xml.dom.minidom as md
 import xml.etree.ElementTree as ET
-
 from csv_reader import CSVReader
-from entities.sample.country import Country
-from entities.sample.team import Team
-from entities.sample.player import Player
 
+# Sample CSV
+# from entities.sample.country import Country
+# from entities.sample.team import Team
+# from entities.sample.player import Player
+
+# Main CSV
+from entities.car import Car
+from entities.charateristic import Charateristic
+from entities.city import City
+from entities.state import State
 
 class CSVtoXMLConverter:
 
