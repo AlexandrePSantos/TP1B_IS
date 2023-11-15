@@ -1,9 +1,8 @@
-# VIN, Maker, Model, Eletric Type, Model Year, Eletric Range
-# Reference: CAFV, Utility, Location
+#   State, City, County 
 import xml.etree.ElementTree as ET
 
 
-class Car:
+class Location:
 
     def __init__(self, company, model, city):
         Car.counter += 1
@@ -23,4 +22,4 @@ class Car:
     def __str__(self):
         return f"{self._company}, age:{self._model}, country:{self._city}"
     
-Car.counter = 0
+Location.counter = 0
