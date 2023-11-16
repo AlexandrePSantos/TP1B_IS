@@ -2,24 +2,62 @@
 import xml.etree.ElementTree as ET
 
 
-class Location:
+# Estados (1)
+class State:
 
-    def __init__(self, company, model, city):
-        Car.counter += 1
-        self._id = Car.counter
-        self._company = company
-        self._model = model
-        self._city = city
+    def __init__(self, name):
+        State.counter += 1
+        self._id = State.counter
+        self._name = name
             
     def to_xml(self):
-        el = ET.Element("Car")
+        el = ET.Element("State")
         el.set("id", str(self._id))
         el.set("name", self._name)
-        el.set("age", self._age)
-        el.set("location_ref", str(self._city.get_id()))
         return el
 
     def __str__(self):
-        return f"{self._company}, age:{self._model}, country:{self._city}"
+        return f"{self._name}"
     
-Location.counter = 0
+State.counter = 0
+
+
+# Cidades (2)
+class City:
+    
+    def __init__(self, name):
+        City.counter += 1
+        self._id = City.counter
+        self._name = name
+            
+    def to_xml(self):
+        el = ET.Element("City")
+        el.set("id", str(self._id))
+        el.set("name", self._name)
+        return el
+
+    def __str__(self):
+        return f"{self._name}"
+    
+City.counter = 0
+
+
+# Vila (3)
+class County:
+
+    def __init__(self, name):
+        County.counter += 1
+        self._id = County.counter
+        self._name = name
+            
+    def to_xml(self):
+        el = ET.Element("County")
+        el.set("id", str(self._id))
+        el.set("name", self._name)
+        return el
+
+    def __str__(self):
+        return f"{self._name}"
+    
+County.counter = 0
+    
