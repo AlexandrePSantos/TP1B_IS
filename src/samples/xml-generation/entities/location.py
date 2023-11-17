@@ -4,11 +4,18 @@ import xml.etree.ElementTree as ET
 
 # Estados (1)
 class State:
+    _city = []
 
     def __init__(self, name):
         State.counter += 1
         self._id = State.counter
         self._name = name
+            
+    def add_city(self, city):
+        self._city.append(city.get_id())
+            
+    def get_id(self):
+        return self._id
             
     def to_xml(self):
         el = ET.Element("State")
@@ -24,11 +31,18 @@ State.counter = 0
 
 # Cidades (2)
 class City:
+    _county = []
     
     def __init__(self, name):
         City.counter += 1
         self._id = City.counter
         self._name = name
+        
+    def add_county(self, county):
+        self._county.append(county.get_id())
+            
+    def get_id(self):
+        return self._id
             
     def to_xml(self):
         el = ET.Element("City")
@@ -49,6 +63,9 @@ class County:
         County.counter += 1
         self._id = County.counter
         self._name = name
+            
+    def get_id(self):
+        return self._id
             
     def to_xml(self):
         el = ET.Element("County")

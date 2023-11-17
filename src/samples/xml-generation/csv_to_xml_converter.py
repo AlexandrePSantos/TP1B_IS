@@ -27,6 +27,18 @@ class CSVtoXMLConverter:
             attr="nationality",
             builder=lambda row: Country(row["nationality"])
         )
+        
+        states = self._reader.read_entities(
+            attr="state",
+            builder=lambda row: State(row["state"]),
+        )
+        
+        cities = self._reader.read_entities(
+            attr="city",
+            builder=lambda row: City(row["city"]),
+            after_create=states[]
+            #adicionar a cidade perguntar diogo que ele ja nao sabia o que fazer
+        )
 
         # Ler informações sobre equipas (times)
         teams = self._reader.read_entities(
