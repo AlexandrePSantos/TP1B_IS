@@ -108,3 +108,15 @@ class County:
 
     def get_name(self):
         return self._name
+
+
+# <Locations>
+#     <State id="1" name="StateName">
+#         <City id="1" name="CityName">
+#             <County id="1" name="CountyName"/>
+#             <!-- Additional counties may follow if added -->
+#         </City>
+#         <!-- Additional cities may follow if added -->
+#     </State>
+#     <!-- Additional states may follow if added -->
+# </Locations>
