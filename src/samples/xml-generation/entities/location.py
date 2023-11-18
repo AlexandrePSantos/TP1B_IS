@@ -1,80 +1,110 @@
-#   State, City, County 
 import xml.etree.ElementTree as ET
 
+class Location:
 
-# Estados (1)
+    counter = 0
+
+    def __init__(self, name):
+        Location.counter += 1
+        self._id = Location.counter
+        self._name = name
+        self._states = []
+
+    def add_state(self, state_name):
+        state = State(state_name)
+        self._states.append(state)
+        return state
+
+    def to_xml(self):
+        location_el = ET.Element("Location", id=str(self._id), name=self._name)
+
+        for state in self._states:
+            location_el.append(state.to_xml())  # Directly append the state XML representation to the location element
+
+        return location_el
+
+    def get_id(self):
+        return self._id
+
+    def get_name(self):
+        return self._name
+
+    def __str__(self):
+        return f"name: {self._name}, id:{self._id}"
+
 class State:
-    _city = []
+
+    state_counter = 0
 
     def __init__(self, name):
-        State.counter += 1
-        self._id = State.counter
+        State.state_counter += 1
+        self._id = State.state_counter
         self._name = name
-            
-    def add_city(self, city):
-        self._city.append(city.get_id())
-            
+        self._cities = []
+
+    def add_city(self, city_name):
+        city = City(city_name)
+        self._cities.append(city)
+        return city
+
+    def to_xml(self):
+        state_el = ET.Element("State", id=str(self._id), name=self._name)
+
+        for city in self._cities:
+            state_el.append(city.to_xml())  # Directly append the city XML representation to the state element
+
+        return state_el
+
     def get_id(self):
         return self._id
-            
-    def to_xml(self):
-        el = ET.Element("State")
-        el.set("id", str(self._id))
-        el.set("name", self._name)
-        return el
 
-    def __str__(self):
-        return f"{self._name}"
-    
-State.counter = 0
+    def get_name(self):
+        return self._name
 
-
-# Cidades (2)
 class City:
-    _county = []
-    
+
+    city_counter = 0
+
     def __init__(self, name):
-        City.counter += 1
-        self._id = City.counter
+        City.city_counter += 1
+        self._id = City.city_counter
         self._name = name
-        
-    def add_county(self, county):
-        self._county.append(county.get_id())
-            
+        self._counties = []
+
+    def add_county(self, county_name):
+        county = County(county_name)
+        self._counties.append(county)
+        return county
+
+    def to_xml(self):
+        city_el = ET.Element("City", id=str(self._id), name=self._name)
+
+        for county in self._counties:
+            city_el.append(county.to_xml())  # Directly append the county XML representation to the city element
+
+        return city_el
+
     def get_id(self):
         return self._id
-            
-    def to_xml(self):
-        el = ET.Element("City")
-        el.set("id", str(self._id))
-        el.set("name", self._name)
-        return el
 
-    def __str__(self):
-        return f"{self._name}"
-    
-City.counter = 0
+    def get_name(self):
+        return self._name
 
-
-# Vila (3)
 class County:
 
+    county_counter = 0
+
     def __init__(self, name):
-        County.counter += 1
-        self._id = County.counter
+        County.county_counter += 1
+        self._id = County.county_counter
         self._name = name
-            
+
+    def to_xml(self):
+        county_el = ET.Element("County", id=str(self._id), name=self._name)
+        return county_el
+
     def get_id(self):
         return self._id
-            
-    def to_xml(self):
-        el = ET.Element("County")
-        el.set("id", str(self._id))
-        el.set("name", self._name)
-        return el
 
-    def __str__(self):
-        return f"{self._name}"
-    
-County.counter = 0
-    
+    def get_name(self):
+        return self._name
