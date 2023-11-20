@@ -1,13 +1,13 @@
 import xml.etree.ElementTree as ET
 
 # Definindo a classe CafvEligibilityCollection
-class CafvEligibilityCollection:
+class CafvEligibility:
 
     def __init__(self):
         self._eligibilities = []  # Lista para armazenar instâncias da classe CafvEligibility
 
     def add_eligibility(self, eligibility_name):
-        eligibility = CafvEligibility(eligibility_name)
+        eligibility = Cafv(eligibility_name)
         self._eligibilities.append(eligibility)
         return eligibility
 
@@ -21,14 +21,14 @@ class CafvEligibilityCollection:
         return cafv_eligibilities_el
 
 # Definindo a classe CafvEligibility
-class CafvEligibility:
+class Cafv:
 
     # Variável de classe para manter um contador global de elegibilidades criadas
     counter = 0
 
     def __init__(self, name):
-        CafvEligibility.counter += 1
-        self._id = CafvEligibility.counter
+        Cafv.counter += 1
+        self._id = Cafv.counter
         self._name = name
 
     def to_xml(self):
