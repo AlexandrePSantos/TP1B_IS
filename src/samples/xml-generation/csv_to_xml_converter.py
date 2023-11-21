@@ -4,6 +4,8 @@ import xml.etree.ElementTree as ET
 from csv_reader import CSVReader
 
 # Importando classes do módulo entities
+from entities.car import Maker
+from entities.car import Model
 from entities.cafv import Cafv
 from entities.utility import Utility
 
@@ -14,6 +16,12 @@ class CSVtoXMLConverter:
         self._reader = CSVReader(path)
 
     def to_xml(self):
+        # Read maker
+        maker_collection = self._reader.read_entities(
+            attr="Maker",
+            builder=lambda row: Maker(row["Maker"])
+        )
+        
         # Read cafv
         cafv_collection = self._reader.read_entities(
             attr="CAFV Eligibility",
@@ -26,9 +34,26 @@ class CSVtoXMLConverter:
             builder=lambda row: Utility(row["Electric Utility"])
         )
 
+        def after_creating_model(model, row):
+            # add the model to the appropriate team
+            maker_collection[row["Maker"]].add_model(model)
+
+        self._reader.read_entities(
+            attr="Model",
+            builder=lambda row: Model(
+                name=row["Model"],
+                etype=row["Electric Type"]
+            ),
+            after_create=after_creating_model
+        )
+
         # Generate the final XML
         root_el = ET.Element("ElectricCars")
 
+        makers_el = ET.Element("Makers")
+        for maker in maker_collection.values():
+            makers_el.append(maker.to_xml())
+            
         cafv_eligibility_el = ET.Element("CAFVEligibility")
         for cafv in cafv_collection.values():
             cafv_eligibility_el.append(cafv.to_xml())
@@ -37,7 +62,7 @@ class CSVtoXMLConverter:
         for elut in electric_utilities_collection.values():
             electric_utilities_el.append(elut.to_xml())
         
-        # root_el.append(makers_el)
+        root_el.append(makers_el)
         root_el.append(cafv_eligibility_el)
         root_el.append(electric_utilities_el)
         
