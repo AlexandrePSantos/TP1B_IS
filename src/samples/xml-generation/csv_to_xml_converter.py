@@ -4,8 +4,12 @@ import xml.etree.ElementTree as ET
 from csv_reader import CSVReader
 
 # Importando classes do módulo entities
-from entities.car import Maker
-from entities.car import Model
+from entities.maker import Maker
+from entities.maker import Model
+from entities.model import Car
+from entities.state import State
+from entities.state import City
+from entities.city import County
 from entities.cafv import Cafv
 from entities.utility import Utility
 
@@ -22,6 +26,11 @@ class CSVtoXMLConverter:
             builder=lambda row: Maker(row["Maker"])
         )
         
+        state_collection = self._reader.read_entities(
+            attr="State",
+            builder=lambda row: State(row["State"])
+        )
+        
         # Read cafv
         cafv_collection = self._reader.read_entities(
             attr="CAFV Eligibility",
@@ -34,17 +43,58 @@ class CSVtoXMLConverter:
             builder=lambda row: Utility(row["Electric Utility"])
         )
 
+        # CAR COLUMNS
         def after_creating_model(model, row):
-            # add the model to the appropriate team
-            maker_collection[row["Maker"]].add_model(model)
+                # add the model to the appropriate team
+                maker_collection[row["Maker"]].add_model(model)
 
-        self._reader.read_entities(
+        model_collection = self._reader.read_entities(
             attr="Model",
             builder=lambda row: Model(
-                name=row["Model"],
-                etype=row["Electric Type"]
+                name=row["Model"]
             ),
             after_create=after_creating_model
+        )
+
+        def after_creating_car(car, row):
+                # add the model to the appropriate team
+                model_collection[row["Model"]].add_car(car)
+
+        self._reader.read_entities(
+            attr="VIN",
+            builder=lambda row: Car(
+                vin=row["VIN"],
+                # model=row["Model"],
+                # modyear=row["Model Year"]
+                # erange=row["Electric Range"]
+                # location=county_collection[row["County"]]
+            ),
+            after_create=after_creating_car
+        )
+        
+        # LOCATION COLUMNS
+        def after_creating_city(city, row):
+                # add the model to the appropriate team
+                state_collection[row["State"]].add_city(city)
+
+        city_collection = self._reader.read_entities(
+            attr="City",
+            builder=lambda row: City(
+                name=row["City"]
+            ),
+            after_create=after_creating_city
+        )
+
+        def after_creating_county(county, row):
+                # add the model to the appropriate team
+                city_collection[row["City"]].add_counties(county)
+
+        county_collection = self._reader.read_entities(
+            attr="County",
+            builder=lambda row: County(
+                name=row["County"]
+            ),
+            after_create=after_creating_county
         )
 
         # Generate the final XML
@@ -53,6 +103,10 @@ class CSVtoXMLConverter:
         makers_el = ET.Element("Makers")
         for maker in maker_collection.values():
             makers_el.append(maker.to_xml())
+            
+        state_el = ET.Element("State")
+        for state in state_collection.values():
+            state_el.append(state.to_xml())
             
         cafv_eligibility_el = ET.Element("CAFVEligibility")
         for cafv in cafv_collection.values():
@@ -63,6 +117,7 @@ class CSVtoXMLConverter:
             electric_utilities_el.append(elut.to_xml())
         
         root_el.append(makers_el)
+        root_el.append(state_el)
         root_el.append(cafv_eligibility_el)
         root_el.append(electric_utilities_el)
         
