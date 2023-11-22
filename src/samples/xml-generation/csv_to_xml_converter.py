@@ -51,7 +51,8 @@ class CSVtoXMLConverter:
         model_collection = self._reader.read_entities(
             attr="Model",
             builder=lambda row: Model(
-                name=row["Model"]
+                name=row["Model"],
+                etype=row["Electric Type"]
             ),
             after_create=after_creating_model
         )
@@ -64,10 +65,11 @@ class CSVtoXMLConverter:
             attr="VIN",
             builder=lambda row: Car(
                 vin=row["VIN"],
-                # model=row["Model"],
-                # modyear=row["Model Year"]
-                # erange=row["Electric Range"]
-                # location=county_collection[row["County"]]
+                modyear=row["Model Year"],
+                erange=row["Electric Range"],
+                cafv=cafv_collection[row["CAFV Eligibility"]],
+                utility=electric_utilities_collection[row["Electric Utility"]],
+                county=state_collection[row["State"]]
             ),
             after_create=after_creating_car
         )
