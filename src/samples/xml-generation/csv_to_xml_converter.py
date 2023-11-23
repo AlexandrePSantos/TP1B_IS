@@ -9,7 +9,6 @@ from entities.maker import Model
 from entities.model import Car
 from entities.state import State
 from entities.state import City
-from entities.city import County
 from entities.cafv import Cafv
 from entities.utility import Utility
 
@@ -42,6 +41,19 @@ class CSVtoXMLConverter:
             attr="Electric Utility",
             builder=lambda row: Utility(row["Electric Utility"])
         )
+        
+        # LOCATION COLUMNS
+        def after_creating_city(city, row):
+                # add the model to the appropriate team
+                state_collection[row["State"]].add_city(city)
+
+        city_collection = self._reader.read_entities(
+            attr="City",
+            builder=lambda row: City(
+                name=row["City"]
+            ),
+            after_create=after_creating_city
+        )
 
         # CAR COLUMNS
         def after_creating_model(model, row):
@@ -69,34 +81,9 @@ class CSVtoXMLConverter:
                 erange=row["Electric Range"],
                 cafv=cafv_collection[row["CAFV Eligibility"]],
                 utility=electric_utilities_collection[row["Electric Utility"]],
-                county=state_collection[row["State"]]
+                city=city_collection[row["City"]]
             ),
             after_create=after_creating_car
-        )
-        
-        # LOCATION COLUMNS
-        def after_creating_city(city, row):
-                # add the model to the appropriate team
-                state_collection[row["State"]].add_city(city)
-
-        city_collection = self._reader.read_entities(
-            attr="City",
-            builder=lambda row: City(
-                name=row["City"]
-            ),
-            after_create=after_creating_city
-        )
-
-        def after_creating_county(county, row):
-                # add the model to the appropriate team
-                city_collection[row["City"]].add_counties(county)
-
-        county_collection = self._reader.read_entities(
-            attr="County",
-            builder=lambda row: County(
-                name=row["County"]
-            ),
-            after_create=after_creating_county
         )
 
         # Generate the final XML
