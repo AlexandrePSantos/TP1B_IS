@@ -14,7 +14,7 @@
   </xs:simpleType>
 
   <!-- Definição dos elementos -->
-  <xs:element name="EletricCars">
+  <xs:element name="ElectricCars">
     <xs:complexType>
       <xs:sequence>
         <xs:element name="Makers" type="MakersType"/>
