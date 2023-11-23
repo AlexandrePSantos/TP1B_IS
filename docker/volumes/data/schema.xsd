@@ -1,6 +1,19 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <!-- Definição dos elementos e atributos -->
+  <!-- Tipos de dados -->
+  <xs:simpleType name="positiveInteger">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="DOLType">
+    <xs:restriction base="xs:string">
+      <!-- Adicione restrições específicas, se necessário -->
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Definição dos elementos -->
   <xs:element name="EletricCars">
     <xs:complexType>
       <xs:sequence>
@@ -10,6 +23,11 @@
         <xs:element name="ElectricUtility" type="ElectricUtilityType"/>
       </xs:sequence>
     </xs:complexType>
+    <!-- Adicionando validação de chave única para Car -->
+    <xs:key name="uniqueCarId">
+      <xs:selector xpath=".//Car"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
   </xs:element>
 
   <xs:complexType name="MakersType">
@@ -22,7 +40,7 @@
     <xs:sequence>
       <xs:element name="Model" type="ModelType" maxOccurs="unbounded"/>
     </xs:sequence>
-    <xs:attribute name="id" type="xs:integer" use="required"/>
+    <xs:attribute name="id" type="positiveInteger" use="required"/>
     <xs:attribute name="name" type="xs:string" use="required"/>
   </xs:complexType>
 
@@ -30,20 +48,20 @@
     <xs:sequence>
       <xs:element name="Car" type="CarType" maxOccurs="unbounded"/>
     </xs:sequence>
-    <xs:attribute name="id" type="xs:integer" use="required"/>
+    <xs:attribute name="id" type="positiveInteger" use="required"/>
     <xs:attribute name="name" type="xs:string" use="required"/>
     <xs:attribute name="type" type="xs:string" use="required"/>
   </xs:complexType>
 
   <xs:complexType name="CarType">
-    <xs:attribute name="id" type="xs:integer" use="required"/>
-    <xs:attribute name="DOL" type="xs:string" use="required"/>
+    <xs:attribute name="id" type="positiveInteger" use="required"/>
+    <xs:attribute name="DOL" type="DOLType" use="required"/>
     <xs:attribute name="VIN" type="xs:string" use="required"/>
-    <xs:attribute name="year" type="xs:integer" use="required"/>
-    <xs:attribute name="range" type="xs:integer" use="required"/>
-    <xs:attribute name="cafv_ref" type="xs:integer" use="required"/>
-    <xs:attribute name="utility_ref" type="xs:integer" use="required"/>
-    <xs:attribute name="city_ref" type="xs:integer" use="required"/>
+    <xs:attribute name="year" type="positiveInteger" use="required"/>
+    <xs:attribute name="range" type="positiveInteger" use="required"/>
+    <xs:attribute name="cafv_ref" type="positiveInteger" use="required"/>
+    <xs:attribute name="utility_ref" type="positiveInteger" use="required"/>
+    <xs:attribute name="city_ref" type="positiveInteger" use="required"/>
   </xs:complexType>
 
   <xs:complexType name="LocationsType">
@@ -56,12 +74,12 @@
     <xs:sequence>
       <xs:element name="City" type="CityType" maxOccurs="unbounded"/>
     </xs:sequence>
-    <xs:attribute name="id" type="xs:integer" use="required"/>
+    <xs:attribute name="id" type="positiveInteger" use="required"/>
     <xs:attribute name="name" type="xs:string" use="required"/>
   </xs:complexType>
 
   <xs:complexType name="CityType">
-    <xs:attribute name="id" type="xs:integer" use="required"/>
+    <xs:attribute name="id" type="positiveInteger" use="required"/>
     <xs:attribute name="name" type="xs:string" use="required"/>
   </xs:complexType>
 
@@ -72,7 +90,7 @@
   </xs:complexType>
 
   <xs:complexType name="EligibilityType">
-    <xs:attribute name="id" type="xs:integer" use="required"/>
+    <xs:attribute name="id" type="positiveInteger" use="required"/>
     <xs:attribute name="name" type="xs:string" use="required"/>
   </xs:complexType>
 
@@ -83,7 +101,7 @@
   </xs:complexType>
 
   <xs:complexType name="UtilityType">
-    <xs:attribute name="id" type="xs:integer" use="required"/>
+    <xs:attribute name="id" type="positiveInteger" use="required"/>
     <xs:attribute name="name" type="xs:string" use="required"/>
   </xs:complexType>
 
