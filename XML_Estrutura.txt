@@ -1,60 +1,25 @@
 <EletricCars>
+
  <Makers>
   <Maker id="0" name="TOYOTA">
    <Model id="0" name="RAV4" Eletric_Type="BEV">
-     <Car VIN="2T3YL4DV5E" modelyear="2020", electricrange="280" cafv_ref="0" utility_ref="1" county_ref="2"/>
-     ...
-   </Model>
-   <Model id="1" name="RAV4 PRIME" Eletric_Type="PHEV">
-     <Car VIN="JTMAB3FV2M" modelyear="2019", electricrange="42" cafv_ref="0" utility_ref="1" county_ref="0"/>
-     ...
+     <Car VIN="2T3YL4DV5E" modelyear="2020", electricrange="280" cafv_ref="0" utility_ref="1" city_ref="2"/>
    </Model>
   </Maker>
-  <Maker id="1" name="TESLA">
-   <Model id="2" name="MODEL Y" Eletric_Type="BEV">
-     <Car VIN="..." modelyear="2020", electricrange="280" cafv_ref="0" utility_ref="1" county_ref="1"/>
-     ...
-   </Model>
-   <Model id="3" name="MODEL S" Eletric_Type="BEV">
-     <Car VIN="..." modelyear="2019", electricrange="400" cafv_ref="0" utility_ref="1" county_ref="1"/>
-     ...
-   </Model>
-   ...
-  </Maker>
-  ...
  </Makers>
 
  <CAFV Eligibility>
   <Eligibility id="0" name="Not eligible due to low battery range"/>
-  <Eligibility id="1" name="Clean Alternative Fuel Vehicle Eligible"/>
-  <Eligibility id="2" name="Eligibility unknown as battery range has not been researched"/>
-  ...
  <CAFV Eligibility>
 
  <ElectricUtilities>
   <Utility id="0" name="CITY OF SEATTLE - (WA)|CITY OF TACOMA - (WA)"/>
-  <Utility id="1" name="BONNEVILLE POWER ADMINISTRATION||PUD NO 1 OF CLARK COUNTY - (WA)"/>
-  ...
  </ElectricUtilities>
 
  <Locations>
   <State id="0" name="WA">
-   <City id="0" name="Woodland">
-    <County id="0" name="Clark"/>
-    <County id="1" name="Cowlitz"/>
-    ...
-   </City>
-   <City id="1" name="Seattle">
-    <County id="2" name="King"/>
-    ...
-   </City>
+   <City id="0" name="Woodland"/>
   </State>
-  <State id="1" name="CA">
-   <City id="0" name="Moraga">
-    <County id="0" name="Contra Costa"/>
-   </City>
-   ...
-  </State>
-  ...
  </Locations>
+
 </EletricCars>
