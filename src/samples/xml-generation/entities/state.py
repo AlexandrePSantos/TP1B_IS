@@ -17,11 +17,8 @@ class State:
         el.set("id", str(self._id))  # Atribuindo atributos ID e name ao elemento
         el.set("name", self._name)
         
-        cities_el = ET.Element("City")
         for city in self._cities:
-            cities_el.append(city.to_xml())
-
-        el.append(cities_el)
+            el.append(city.to_xml())
         
         return el
 

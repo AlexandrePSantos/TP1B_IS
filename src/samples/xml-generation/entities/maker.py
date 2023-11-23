@@ -17,12 +17,9 @@ class Maker:
         el.set("id", str(self._id))  # Atribuindo atributos ID e name ao elemento
         el.set("name", self._name)
         
-        models_el = ET.Element("Model")
         for model in self._models:
-            models_el.append(model.to_xml())
+            el.append(model.to_xml())
 
-        el.append(models_el)
-        
         return el
 
     def get_id(self):

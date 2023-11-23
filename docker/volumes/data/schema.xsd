@@ -1,0 +1,90 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- Definição dos elementos e atributos -->
+  <xs:element name="EletricCars">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Makers" type="MakersType"/>
+        <xs:element name="Locations" type="LocationsType"/>
+        <xs:element name="CAFVEligibility" type="CAFVEligibilityType"/>
+        <xs:element name="ElectricUtility" type="ElectricUtilityType"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="MakersType">
+    <xs:sequence>
+      <xs:element name="Maker" type="MakerType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="MakerType">
+    <xs:sequence>
+      <xs:element name="Model" type="ModelType" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:integer" use="required"/>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="ModelType">
+    <xs:sequence>
+      <xs:element name="Car" type="CarType" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:integer" use="required"/>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+    <xs:attribute name="type" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="CarType">
+    <xs:attribute name="id" type="xs:integer" use="required"/>
+    <xs:attribute name="DOL" type="xs:string" use="required"/>
+    <xs:attribute name="VIN" type="xs:string" use="required"/>
+    <xs:attribute name="year" type="xs:integer" use="required"/>
+    <xs:attribute name="range" type="xs:integer" use="required"/>
+    <xs:attribute name="cafv_ref" type="xs:integer" use="required"/>
+    <xs:attribute name="utility_ref" type="xs:integer" use="required"/>
+    <xs:attribute name="city_ref" type="xs:integer" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="LocationsType">
+    <xs:sequence>
+      <xs:element name="State" type="StateType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="StateType">
+    <xs:sequence>
+      <xs:element name="City" type="CityType" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:integer" use="required"/>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="CityType">
+    <xs:attribute name="id" type="xs:integer" use="required"/>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="CAFVEligibilityType">
+    <xs:sequence>
+      <xs:element name="Eligibility" type="EligibilityType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="EligibilityType">
+    <xs:attribute name="id" type="xs:integer" use="required"/>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="ElectricUtilityType">
+    <xs:sequence>
+      <xs:element name="Utility" type="UtilityType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="UtilityType">
+    <xs:attribute name="id" type="xs:integer" use="required"/>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+  </xs:complexType>
+
+</xs:schema>

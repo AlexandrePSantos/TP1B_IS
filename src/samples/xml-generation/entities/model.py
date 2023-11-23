@@ -19,11 +19,8 @@ class Model:
         el.set("name", self._name)
         el.set("type", str(self._etype))
         
-        cars_el = ET.Element("Car")
         for car in self._cars:
-            cars_el.append(car.to_xml())
-
-        el.append(cars_el)
+            el.append(car.to_xml())
         
         return el
 

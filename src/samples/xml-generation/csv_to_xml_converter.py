@@ -74,8 +74,9 @@ class CSVtoXMLConverter:
                 model_collection[row["Model"]].add_car(car)
 
         self._reader.read_entities(
-            attr="VIN",
+            attr="DOL Vehicle ID",
             builder=lambda row: Car(
+                dol=row["DOL Vehicle ID"],
                 vin=row["VIN"],
                 modyear=row["Model Year"],
                 erange=row["Electric Range"],
@@ -93,7 +94,7 @@ class CSVtoXMLConverter:
         for maker in maker_collection.values():
             makers_el.append(maker.to_xml())
             
-        state_el = ET.Element("State")
+        state_el = ET.Element("Locations")
         for state in state_collection.values():
             state_el.append(state.to_xml())
             
