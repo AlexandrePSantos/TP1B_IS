@@ -1,33 +1,39 @@
-import xml.etree.ElementTree as ET
+from csv_to_xml_converter import CSVtoXMLConverter
+from lxml import etree
 
 def verifica_xml(xml_string):
+    # Caminho do arquivo CSV
+    csv_file_path = "/data/Electric_Vehicle_Population_Data.csv"
+
+    # Caminho do esquema XML
+    schema_file_path = "/data/schema.xsd"
+
+    # Instanciar o conversor CSV para XML
+    converter = CSVtoXMLConverter(csv_file_path)
+
+    # Obter a string XML
+    xml_content = converter.to_xml_str()
+
+    # Validar o XML em relação ao schema
+    schema = etree.XMLSchema(file=schema_file_path)
+    parser = etree.XMLParser(schema=schema)
+
     try:
         # Tenta analisar o XML
-        root = ET.fromstring(xml_string)
-        print("XML está bem formado.")
-        return True
-    except ET.ParseError as e:
-        print(f"Erro ao analisar o XML: {e}")
-        return False
+        root = etree.fromstring(xml_content, parser)
+        print("O XML está em conformidade com o esquema.")
+        
+        # Caminho do arquivo de saída XML
+        output_file_path = "/data/output.xml"
 
-def verificar_arquivo_xml(caminho_do_arquivo):
-    try:
-        # Lê o conteúdo do arquivo XML
-        with open(caminho_do_arquivo, 'r') as arquivo:
-            xml_string = arquivo.read()
+        # Salvar o conteúdo XML no arquivo de saída
+        with open(output_file_path, "w", encoding="utf-8") as file:
+            file.write(xml_content)
 
-        # Verifica se o XML é bem formado
-        return verifica_xml(xml_string)
-    except FileNotFoundError:
-        print(f"Arquivo não encontrado: {caminho_do_arquivo}")
-        return False
+        print(f"O conteúdo XML foi salvo em {output_file_path}")
 
-# Exemplo de uso
-caminho_do_arquivo_xml = 'caminho/do/seu/arquivo.xml'
-
-if verificar_arquivo_xml(caminho_do_arquivo_xml):
-    # Faça algo se o XML estiver bem formado
-    print("Fazer algo com o XML...")
-else:
-    # Trate caso haja erros no XML
-    print("Corrija os erros no XML antes de prosseguir.")
+    except etree.DocumentInvalid as e:
+        # Se houver um erro de validação, imprima o erro
+        print(f"Erro de validação do esquema: {e}")
+        for error in schema.error_log:
+            print(f"Erro: {error.message}, Linha: {error.line}, Coluna: {error.column}")
