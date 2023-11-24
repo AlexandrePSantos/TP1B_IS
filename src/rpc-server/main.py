@@ -4,8 +4,6 @@ from xmlrpc.server import SimpleXMLRPCRequestHandler
 
 from functions.string_length import string_length
 from functions.string_reverse import string_reverse
-# from functions.xml import validate
-
 
 class RequestHandler(SimpleXMLRPCRequestHandler):
     rpc_paths = ('/RPC2',)
@@ -33,7 +31,7 @@ with SimpleXMLRPCServer(('0.0.0.0', 9000), requestHandler=RequestHandler) as ser
     # register both functions
     server.register_function(string_reverse)
     server.register_function(string_length)
-    # server.register_function(validate)
+    server.register_function(validate_xml.verifica_xml)
 
     # start the server
     print("Starting the RPC Server...")

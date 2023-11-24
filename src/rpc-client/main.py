@@ -8,7 +8,10 @@ while sair:
     print("\n\n--------MENU--------")
     print("1 - Inverter String")
     print("2 - Obter Comprimento da String")
-    print("3 - Listar Arquivos")
+    print("3 - Carregar Arquivo (CSV -> XML -> DB)")
+    print("4 - Listar Arquivos (DB)")
+    print("5 - Remover Arquivos (DB)")
+    print("...Queries...")
     print("0 - Sair")
 
     try:
@@ -25,8 +28,7 @@ while sair:
             resultado = server.string_length(string)
             print(f"Resultado: {resultado}")
         elif opcao == "3":
-            # Adicione aqui a lógica para listar arquivos, se necessário
-            pass
+            server.validate()
         else:
             print("Opção inválida. Tente novamente.")
             

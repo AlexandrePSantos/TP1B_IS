@@ -12,8 +12,9 @@ try:
 
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM teachers")
+    cursor.execute("SELECT * FROM imported_documents")
     
-    file_path = os.path.join('./docker/volumes/data', 'teste.xml')
+    file_path = os.path.join('/data', 'teste.xml')
 
     with open(file_path, 'r') as file:
         xml_content = file.read()

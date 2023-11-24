@@ -1,20 +1,16 @@
-import importlib.util
+import sys
+import os
 
-# Specify the absolute path to the module
-module_path = 'src/samples/xml-generation/validate_xml.py'
+# Adiciona o diretório ao caminho do sistema
+module_path = os.path.join('/app', 'validate_xml.py')
+sys.path.append('/app')
 
-# Create a spec from the path
-spec = importlib.util.spec_from_file_location('validate_xml.py', module_path)
+# Importa diretamente a função do módulo
+# from validate_xml import verifica_xml
 
-# Import the module
-module = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(module)
-
-def validate():
-    module.verifica_xml()
-
-def loadToDB():
-    print("Função para carregar o xml para a bd!")
-
+# def loadToDB():
+#     # Chama a função verifica_xml diretamente
+#     verifica_xml()
+    
 def remove():
     print("Função para remover o xml da bd!")
