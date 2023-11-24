@@ -16,15 +16,6 @@ services:
     depends_on:
       - db
 
-  rpc-client:
-    container_name: is-rpc-client
-    build: docker/images/python
-    volumes:
-      - "./src/rpc-client:/app"
-      - "./docker/volumes/data:/data"
-    depends_on:
-      - rpc-server
-
   sample-db-access:
     container_name: is-db-access
     build: docker/images/python
@@ -42,6 +33,13 @@ services:
       - "./docker/volumes/data:/data"
     depends_on:
       - rpc-server
-
+  rpc-client:
+      container_name: is-rpc-client
+      build: docker/images/python
+      volumes:
+        - "./src/rpc-client:/app"
+        - "./docker/volumes/data:/data"
+      depends_on:
+        - rpc-server
 volumes:
   postgres_data:
