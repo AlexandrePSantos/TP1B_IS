@@ -1,5 +1,5 @@
 import psycopg2
-
+import os
 connection = None
 cursor = None
 
@@ -12,6 +12,15 @@ try:
 
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM teachers")
+    
+    file_path = os.path.join('./docker/volumes/data', 'teste.xml')
+
+    with open(file_path, 'r') as file:
+        xml_content = file.read()
+    
+    cursor.execute("INSERT into imported_documents (file_name, xml) VALUES (%s, %s)", ("teste.xml", xml_content))
+    
+    connection.commit()
 
     print("Teachers list:")
     for teacher in cursor:
