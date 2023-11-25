@@ -10,7 +10,11 @@ while sair:
     print("2 - Carrega XML para a BD")
     print("3 - Listar ficheiros na BD")
     print("4 - Remove ficheiro da BD")
-    print("...Queries...")
+    print("5 - Query 1")
+    print("6 - Query 2")
+    print("7 - Query 3")
+    print("8 - Query 4")
+    print("9 - Query 5")
     print("0 - Sair")
 
     try:
@@ -27,6 +31,21 @@ while sair:
             server.listFiles()
         elif opcao == "4":
             server.removeFiles()
+        elif opcao == "5":
+            # Query 1
+            pass
+        elif opcao == "6":
+            # Query 2
+            pass
+        elif opcao == "7":
+            # Query 3
+            pass
+        elif opcao == "8":
+            # Query 4
+            pass
+        elif opcao == "9":
+            # Query 5
+            pass
         else:
             print("Opção inválida. Tente novamente.")
             
