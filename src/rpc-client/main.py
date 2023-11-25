@@ -24,13 +24,13 @@ while sair:
             sair = False
             break
         elif opcao == "1":
-            server.convert()
+            server.verifica_xml()
         elif opcao == "2":
-            server.loadToDB()
+            server.load()
         elif opcao == "3":
-            server.listFiles()
+            server.list()
         elif opcao == "4":
-            server.removeFiles()
+            server.remove()
         elif opcao == "5":
             # Query 1
             pass

@@ -4,7 +4,8 @@ from xmlrpc.server import SimpleXMLRPCRequestHandler
 
 from functions.string_length import string_length
 from functions.string_reverse import string_reverse
-from functions.xml.validate_xml import verifica_xml
+from functions.validate_xml import verifica_xml
+from functions.db import load, list, remove
 
 class RequestHandler(SimpleXMLRPCRequestHandler):
     rpc_paths = ('/RPC2',)
@@ -33,9 +34,9 @@ with SimpleXMLRPCServer(('0.0.0.0', 9000), requestHandler=RequestHandler) as ser
     server.register_function(string_reverse)
     server.register_function(string_length)
     server.register_function(verifica_xml)
-    server.register_function(loadToDB)
-    server.register_function(listFiles)
-    server.register_function(removeFiles)
+    server.register_function(load)
+    server.register_function(list)
+    server.register_function(remove)
 
     # start the server
     print("Starting the RPC Server...")

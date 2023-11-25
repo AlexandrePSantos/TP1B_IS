@@ -1,5 +1,5 @@
-from csv_to_xml_converter import CSVtoXMLConverter
 from lxml import etree
+from xml_conversion.csv_to_xml_converter import CSVtoXMLConverter
 
 def verifica_xml(self):
     # Caminho do arquivo CSV
