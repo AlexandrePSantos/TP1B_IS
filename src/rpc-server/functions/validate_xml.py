@@ -1,7 +1,7 @@
 from lxml import etree
 from functions.xml_conversion.csv_to_xml_converter import CSVtoXMLConverter
 
-def verifica_xml(self):
+def verifica_xml():
     # Caminho do arquivo CSV
     csv_file_path = "/data/Electric_Vehicle_Population_Data.csv"
 
@@ -37,3 +37,4 @@ def verifica_xml(self):
         print(f"Erro de validação do esquema: {e}")
         for error in schema.error_log:
             print(f"Erro: {error.message}, Linha: {error.line}, Coluna: {error.column}")
+

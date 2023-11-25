@@ -1,5 +1,5 @@
 import xml.etree.ElementTree as ET
-from entities.model import Model
+from functions.xml_conversion.entities.model import Model
 
 class Maker:
 

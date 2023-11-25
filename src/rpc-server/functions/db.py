@@ -1,7 +1,7 @@
 import psycopg2
 import os
 
-def load(self):
+def load():
     try:
         connection = psycopg2.connect(user="is",
                                         password="is",
@@ -29,7 +29,7 @@ def load(self):
             cursor.close()
             connection.close()
 
-def list(self):
+def list():
     try:
         connection = psycopg2.connect(user="is",
                                         password="is",
@@ -55,7 +55,7 @@ def list(self):
             cursor.close()
             connection.close()
             
-def remove(self, id):
+def remove(id):
     try:
         connection = psycopg2.connect(user="is",
                                         password="is",

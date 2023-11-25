@@ -1,15 +1,15 @@
 import xml.dom.minidom as md
 import xml.etree.ElementTree as ET
-from csv_reader import CSVReader
+from functions.xml_conversion.csv_reader import CSVReader
 
 # Importando classes do módulo entities
-from entities.maker import Maker
-from entities.maker import Model
-from entities.model import Car
-from entities.state import State
-from entities.state import City
-from entities.cafv import Cafv
-from entities.utility import Utility
+from functions.xml_conversion.entities.maker import Maker
+from functions.xml_conversion.entities.maker import Model
+from functions.xml_conversion.entities.model import Car
+from functions.xml_conversion.entities.state import State
+from functions.xml_conversion.entities.state import City
+from functions.xml_conversion.entities.cafv import Cafv
+from functions.xml_conversion.entities.utility import Utility
 
 
 class CSVtoXMLConverter:
