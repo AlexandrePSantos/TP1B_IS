@@ -19,7 +19,8 @@ while True:
 
     if (op == '1'):
         print("Convert CSV file to XML")
-        # server.converter()
+        # result = server.convertFile()
+        # print(result)
 
     elif (op == '2'):
         print("Validate XML file with Schema")

@@ -14,7 +14,6 @@ from functions.importFile import importFile
 class RequestHandler(SimpleXMLRPCRequestHandler):
     rpc_paths = ('/RPC2',)
 
-
 with SimpleXMLRPCServer(('0.0.0.0', 9000), requestHandler=RequestHandler, allow_none = True) as server:
     server.register_introspection_functions()
     
@@ -28,13 +27,6 @@ with SimpleXMLRPCServer(('0.0.0.0', 9000), requestHandler=RequestHandler, allow_
 
         print("exiting, gracefully")
         sys.exit(0)
-
-
-    # Converting the csv to xml
-    # csv_file_path = "/data/Electric_Vehicle_Population_Data.csv"
-    # schema_file_path = "/data/schema.xsd"
-    # convertFile = CSVtoXMLConverter(csv_file_path)
-    # output_file_path = "/data/result.xml"
     
     # signals
     signal.signal(signal.SIGTERM, signal_handler)
