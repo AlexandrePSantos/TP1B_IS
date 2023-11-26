@@ -17,6 +17,8 @@ def importFile(file_path, xml_name):
 
             cursor.execute("INSERT INTO imported_documents(file_name,xml) VALUES(%s,%s)", (xml_name, data))
             connection.commit()
+            
+            print("File imported successfully!")  
 
     except (Exception, psycopg2.Error) as error:
         print("Failed to fetch data", error)

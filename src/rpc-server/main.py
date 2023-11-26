@@ -2,7 +2,7 @@ import signal, sys
 from xmlrpc.server import SimpleXMLRPCServer
 from xmlrpc.server import SimpleXMLRPCRequestHandler
 
-# from functions.csv_to_xml_converter import CSVtoXMLConverter
+from functions.converter import CSVtoXMLConverter
 from functions.validateFile import validateFile
 from functions.importFile import importFile
 # from functions.query1 import query1
@@ -17,7 +17,7 @@ class RequestHandler(SimpleXMLRPCRequestHandler):
 with SimpleXMLRPCServer(('0.0.0.0', 9000), requestHandler=RequestHandler, allow_none = True) as server:
     server.register_introspection_functions()
     
-
+    
 
     def signal_handler(signum, frame):
         print("received signal")
@@ -32,9 +32,11 @@ with SimpleXMLRPCServer(('0.0.0.0', 9000), requestHandler=RequestHandler, allow_
     signal.signal(signal.SIGTERM, signal_handler)
     signal.signal(signal.SIGHUP, signal_handler)
     signal.signal(signal.SIGINT, signal_handler)
-
+    
+    convertFile = CSVtoXMLConverter("/data/Electric_Vehicle_Population_Data.csv")
+    
     # register both functions
-    # server.register_function(convertFile)
+    server.register_function(convertFile.to_xml_str)
     server.register_function(validateFile)
     server.register_function(importFile)
     # server.register_function(query1)

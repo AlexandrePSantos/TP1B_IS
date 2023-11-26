@@ -8,10 +8,11 @@ while True:
     print("1 - Convert CSV file")
     print("2 - Validate XML file")
     print("3 - Import XML file")
-    print("4 - Query 1")
-    print("5 - Query 2")
-    print("6 - Query 3")
-    print("7 - Query 4")
+    print("4 - List files from the database")
+    print("5 - Query 1")
+    print("6 - Query 2")
+    print("7 - Query 3")
+    print("8 - Query 4")
     print("8 - Query 5")
     print("0 - Exit")
 
@@ -19,9 +20,8 @@ while True:
 
     if (op == '1'):
         print("Convert CSV file to XML")
-        # result = server.convertFile()
-        # print(result)
-
+        server.to_xml_str()
+        
     elif (op == '2'):
         print("Validate XML file with Schema")
         output = server.validateFile()
@@ -29,9 +29,8 @@ while True:
 
     elif (op == '3'):
         print("Import XML file to Database")
-        result = server.importFile('/data/result.xml', input("File name to store in the database: "))
-        print(result)
-
+        server.importFile('/data/result.xml', input("File name to store in the database: "))
+        
     elif (op == '4'):
         pass
 
@@ -42,6 +41,9 @@ while True:
         pass
 
     elif (op == '7'):
+        pass
+    
+    elif (op == '8'):
         pass
     
     elif (op == '8'):
