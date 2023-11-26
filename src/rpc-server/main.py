@@ -5,19 +5,12 @@ from xmlrpc.server import SimpleXMLRPCRequestHandler
 from functions.converter import CSVtoXMLConverter
 from functions.validateFile import validateFile
 from functions.importFile import importFile
-# from functions.query1 import query1
-# from functions.query2 import query2
-# from functions.query3 import query3
-# from functions.query4 import query4
-# from functions.query5 import query5
 
 class RequestHandler(SimpleXMLRPCRequestHandler):
     rpc_paths = ('/RPC2',)
 
 with SimpleXMLRPCServer(('0.0.0.0', 9000), requestHandler=RequestHandler, allow_none = True) as server:
     server.register_introspection_functions()
-    
-    
 
     def signal_handler(signum, frame):
         print("received signal")
@@ -35,15 +28,10 @@ with SimpleXMLRPCServer(('0.0.0.0', 9000), requestHandler=RequestHandler, allow_
     
     convertFile = CSVtoXMLConverter("/data/Electric_Vehicle_Population_Data.csv")
     
-    # register both functions
+    # register functions
     server.register_function(convertFile.to_xml_str)
     server.register_function(validateFile)
     server.register_function(importFile)
-    # server.register_function(query1)
-    # server.register_function(query2)
-    # server.register_function(query3)
-    # server.register_function(query4)
-    # server.register_function(query5)
     
     # start the server
     print("Starting the RPC Server...")
