@@ -2,9 +2,9 @@ import signal, sys
 from xmlrpc.server import SimpleXMLRPCServer
 from xmlrpc.server import SimpleXMLRPCRequestHandler
 
-from functions.csv_to_xml_converter import CSVtoXMLConverter
+# from functions.csv_to_xml_converter import CSVtoXMLConverter
 from functions.validateFile import validateFile
-# from functions.importFile import importFile
+from functions.importFile import importFile
 # from functions.query1 import query1
 # from functions.query2 import query2
 # from functions.query3 import query3
@@ -15,8 +15,9 @@ class RequestHandler(SimpleXMLRPCRequestHandler):
     rpc_paths = ('/RPC2',)
 
 
-with SimpleXMLRPCServer(('0.0.0.0', 9000), requestHandler=RequestHandler) as server:
+with SimpleXMLRPCServer(('0.0.0.0', 9000), requestHandler=RequestHandler, allow_none = True) as server:
     server.register_introspection_functions()
+    
 
 
     def signal_handler(signum, frame):
@@ -30,10 +31,10 @@ with SimpleXMLRPCServer(('0.0.0.0', 9000), requestHandler=RequestHandler) as ser
 
 
     # Converting the csv to xml
-    csv_file_path = "/data/Electric_Vehicle_Population_Data.csv"
-    schema_file_path = "/data/schema.xsd"
-    convertFile = CSVtoXMLConverter(csv_file_path)
-    output_file_path = "/data/result.xml"
+    # csv_file_path = "/data/Electric_Vehicle_Population_Data.csv"
+    # schema_file_path = "/data/schema.xsd"
+    # convertFile = CSVtoXMLConverter(csv_file_path)
+    # output_file_path = "/data/result.xml"
     
     # signals
     signal.signal(signal.SIGTERM, signal_handler)
@@ -41,9 +42,9 @@ with SimpleXMLRPCServer(('0.0.0.0', 9000), requestHandler=RequestHandler) as ser
     signal.signal(signal.SIGINT, signal_handler)
 
     # register both functions
-    server.register_function(convertFile)
+    # server.register_function(convertFile)
     server.register_function(validateFile)
-    # server.register_function(importFile)
+    server.register_function(importFile)
     # server.register_function(query1)
     # server.register_function(query2)
     # server.register_function(query3)

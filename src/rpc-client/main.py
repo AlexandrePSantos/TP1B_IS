@@ -1,7 +1,7 @@
 import xmlrpc.client
 
 print("Conectando ao servidor...")
-server = xmlrpc.client.ServerProxy('http://is-rpc-server:9000')
+server = xmlrpc.client.ServerProxy('http://is-rpc-server:9000', allow_none = True)
 
 while True:
     print("\n\n-    MENU    -")
@@ -28,7 +28,8 @@ while True:
 
     elif (op == '3'):
         print("Import XML file to Database")
-        # result = server.importFile('/usr/data/output.xml', input("Set Database file name: "))
+        result = server.importFile('/data/result.xml', input("File name to store in the database: "))
+        print(result)
 
     elif (op == '4'):
         pass

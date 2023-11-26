@@ -3,13 +3,13 @@ import xml.etree.ElementTree as ET
 from functions.csv_reader import CSVReader
 
 # Importando classes do módulo entities
-from entities.maker import Maker
-from entities.maker import Model
-from entities.model import Car
-from entities.state import State
-from entities.state import City
-from entities.cafv import Cafv
-from entities.utility import Utility
+from functions.entities.maker import Maker
+from functions.entities.maker import Model
+from functions.entities.model import Car
+from functions.entities.state import State
+from functions.entities.state import City
+from functions.entities.cafv import Cafv
+from functions.entities.utility import Utility
 
 
 class CSVtoXMLConverter:

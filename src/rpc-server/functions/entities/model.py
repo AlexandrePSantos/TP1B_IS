@@ -1,5 +1,5 @@
 import xml.etree.ElementTree as ET
-from entities.car import Car
+from functions.entities.car import Car
 
 class Model:
 
