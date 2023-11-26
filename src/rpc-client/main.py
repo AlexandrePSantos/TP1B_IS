@@ -3,52 +3,54 @@ import xmlrpc.client
 print("Conectando ao servidor...")
 server = xmlrpc.client.ServerProxy('http://is-rpc-server:9000')
 
-sair = True
-while sair:
-    print("\n\n--------MENU--------")
-    print("1 - Converter csv para xml + validar formato")
-    print("2 - Carrega XML para a BD")
-    print("3 - Listar ficheiros na BD")
-    print("4 - Remove ficheiro da BD")
-    print("5 - Query 1")
-    print("6 - Query 2")
-    print("7 - Query 3")
-    print("8 - Query 4")
-    print("9 - Query 5")
-    print("0 - Sair")
+while True:
+    print("\n\n-    MENU    -")
+    print("1 - Convert CSV file")
+    print("2 - Validate XML file")
+    print("3 - Import XML file")
+    print("4 - Query 1")
+    print("5 - Query 2")
+    print("6 - Query 3")
+    print("7 - Query 4")
+    print("8 - Query 5")
+    print("0 - Exit")
 
-    try:
-        opcao = input("Digite o número da opção desejada: ")
+    op = str(input("Select an option: "))
 
-        if opcao == "0":
-            sair = False
-            break
-        elif opcao == "1":
-            server.verifica_xml()
-        elif opcao == "2":
-            server.load()
-        elif opcao == "3":
-            server.list()
-        elif opcao == "4":
-            server.remove()
-        elif opcao == "5":
-            # Query 1
-            pass
-        elif opcao == "6":
-            # Query 2
-            pass
-        elif opcao == "7":
-            # Query 3
-            pass
-        elif opcao == "8":
-            # Query 4
-            pass
-        elif opcao == "9":
-            # Query 5
-            pass
-        else:
-            print("Opção inválida. Tente novamente.")
-            
-    except Exception as e:
-        print(f"Erro: {e}")
-        sair = False
+    if (op == '1'):
+        print("Convert CSV file to XML")
+        # server.converter()
+
+    elif (op == '2'):
+        print("Validate XML file with Schema")
+        output = server.validateFile()
+        print(output)
+
+    elif (op == '3'):
+        print("Import XML file to Database")
+        # result = server.importFile('/usr/data/output.xml', input("Set Database file name: "))
+
+    elif (op == '4'):
+        pass
+
+    elif (op == '5'):
+        pass
+
+    elif (op == '6'):
+        pass
+
+    elif (op == '7'):
+        pass
+    
+    elif (op == '8'):
+        pass
+        # cities = server.query3()
+        # print(cities)
+
+
+    elif (op == '0'):
+        print("Exiting...")
+        break
+
+    else:
+        print("Invalid option")

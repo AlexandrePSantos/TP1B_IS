@@ -25,7 +25,7 @@ class Validation:
             print("O XML está em conformidade com o esquema.")
             
             # Caminho do arquivo de saída XML
-            output_file_path = "/data/output.xml"
+            output_file_path = "/data/result.xml"
 
             # Salvar o conteúdo XML no arquivo de saída
             with open(output_file_path, "w", encoding="utf-8") as file:
