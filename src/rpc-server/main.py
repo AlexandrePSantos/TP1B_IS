@@ -5,6 +5,8 @@ from xmlrpc.server import SimpleXMLRPCRequestHandler
 from functions.converter import CSVtoXMLConverter
 from functions.validateFile import validateFile
 from functions.importFile import importFile
+from functions.listFiles import listFiles
+from functions.softDelete import softDelete
 
 class RequestHandler(SimpleXMLRPCRequestHandler):
     rpc_paths = ('/RPC2',)
@@ -32,6 +34,8 @@ with SimpleXMLRPCServer(('0.0.0.0', 9000), requestHandler=RequestHandler, allow_
     server.register_function(convertFile.to_xml_str)
     server.register_function(validateFile)
     server.register_function(importFile)
+    server.register_function(listFiles)
+    server.register_function(softDelete)
     
     # start the server
     print("Starting the RPC Server...")

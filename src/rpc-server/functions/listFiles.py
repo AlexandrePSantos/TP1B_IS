@@ -1,6 +1,6 @@
 import psycopg2
 
-def importFile(file_path, xml_name):
+def listFiles():
     connection = None
     cursor = None
     try:
@@ -12,12 +12,12 @@ def importFile(file_path, xml_name):
 
         cursor = connection.cursor()
 
-        with open(file_path, encoding='utf-8') as file:
-            data = file.read()
-            cursor.execute("INSERT INTO imported_documents(file_name,xml) VALUES(%s,%s)", (xml_name, data))
-            connection.commit()
-            
-            print("File imported successfully!")  
+        cursor.execute("SELECT id, file_name, created_on FROM imported_documents WHERE is_deleted = FALSE")
+        connection.commit()
+        
+        print("Files in the database:")
+        for file_name in cursor.fetchall():
+            print(file_name[0])  
 
     except (Exception, psycopg2.Error) as error:
         print("Failed to fetch data", error)
@@ -26,5 +26,3 @@ def importFile(file_path, xml_name):
         if connection:
             cursor.close()
             connection.close()
-            
-            

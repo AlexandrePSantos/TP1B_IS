@@ -1,6 +1,6 @@
 import psycopg2
 
-def importFile(file_path, xml_name):
+def softDelete(xml_name):
     connection = None
     cursor = None
     try:
@@ -12,19 +12,15 @@ def importFile(file_path, xml_name):
 
         cursor = connection.cursor()
 
-        with open(file_path, encoding='utf-8') as file:
-            data = file.read()
-            cursor.execute("INSERT INTO imported_documents(file_name,xml) VALUES(%s,%s)", (xml_name, data))
-            connection.commit()
+        cursor.execute("UPDATE imported_documents SET is_deleted = TRUE WHERE file_name = %s", (xml_name,))
+        connection.commit()
             
-            print("File imported successfully!")  
+        print("File soft-deleted successfully!")  
 
     except (Exception, psycopg2.Error) as error:
-        print("Failed to fetch data", error)
+        print("Failed to soft-delete data", error)
 
     finally:
         if connection:
             cursor.close()
             connection.close()
-            
-            

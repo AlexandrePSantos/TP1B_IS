@@ -9,6 +9,7 @@ while True:
     print("2 - Validate XML file")
     print("3 - Import XML file")
     print("4 - List files from the database")
+    print("5 - Soft-delete file from the database")
     print("0 - Exit")
 
     op = str(input("Select an option: "))
@@ -25,6 +26,15 @@ while True:
     elif (op == '3'):
         print("Import XML file to Database")
         server.importFile('/data/result.xml', input("File name to store in the database: "))
+    
+    elif (op == '4'):
+        print("List files from the database")
+        output = server.listFiles()
+        print(output)
+        
+    elif (op == '5'):
+        print("Soft-delete file from the database")
+        server.softDelete(input("File name to soft-delete from the database: "))
  
     elif (op == '0'):
         print("Exiting...")
