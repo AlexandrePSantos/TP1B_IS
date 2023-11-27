@@ -11,14 +11,11 @@ def listFiles():
                                       database="is")
 
         cursor = connection.cursor()
-
-        cursor.execute("SELECT id, file_name, created_on FROM imported_documents WHERE is_deleted = FALSE")
+        cursor.execute("SELECT id, file_name, created_on FROM imported_documents")
         connection.commit()
         
         print("Files in the database:")
-        for file_name in cursor.fetchall():
-            print(file_name[0])  
-
+        return cursor.fetchall()
     except (Exception, psycopg2.Error) as error:
         print("Failed to fetch data", error)
 
