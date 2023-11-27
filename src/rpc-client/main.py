@@ -10,6 +10,7 @@ while True:
     print("3 - Import XML file")
     print("4 - List files from the database")
     print("5 - Soft-delete file from the database")
+    print("6 - Search car by id")
     print("0 - Exit")
 
     op = str(input("Select an option: "))
@@ -35,6 +36,10 @@ while True:
     elif (op == '5'):
         print("Soft-delete file from the database")
         server.softDelete(input("File name to soft-delete from the database: "))
+        
+    elif (op == '6'):
+        print("Search car by id")
+        server.softDelete(input("Id of the car you want to search for: "))
  
     elif (op == '0'):
         print("Exiting...")
