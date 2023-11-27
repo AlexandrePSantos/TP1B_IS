@@ -14,8 +14,8 @@ def execute_query(query, params=None, fetch=False):
         cursor.execute(query, params)
         connection.commit()
         
-        if fetch:
-            return cursor.fetchall()
+        return cursor.fetchall()
+    
     except (Exception, psycopg2.Error) as error:
         print("Failed to fetch data", error)
 
