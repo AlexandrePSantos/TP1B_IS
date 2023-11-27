@@ -13,8 +13,8 @@ class Maker:
         self._models.append(model)
 
     def to_xml(self):
-        el = ET.Element("Maker")  # Criando um elemento XML para representar o utilitário
-        el.set("id", str(self._id))  # Atribuindo atributos ID e name ao elemento
+        el = ET.Element("Maker")  
+        el.set("id", str(self._id))  
         el.set("name", self._name)
         
         for model in self._models:
@@ -39,8 +39,8 @@ class Type:
         self._name = name
 
     def to_xml(self):
-        el = ET.Element("Electric Type")  # Criando um elemento XML para representar o utilitário
-        el.set("id", str(self._id))  # Atribuindo atributos ID e name ao elemento
+        el = ET.Element("Electric Type") 
+        el.set("id", str(self._id)) 
         el.set("name", self._name)
         return el
 

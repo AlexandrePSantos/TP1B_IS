@@ -13,8 +13,8 @@ class State:
         self._cities.append(city)
 
     def to_xml(self):
-        el = ET.Element("State")  # Criando um elemento XML para representar o utilitário
-        el.set("id", str(self._id))  # Atribuindo atributos ID e name ao elemento
+        el = ET.Element("State") 
+        el.set("id", str(self._id)) 
         el.set("name", self._name)
         
         for city in self._cities:

@@ -1,6 +1,5 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <!-- Tipos de dados -->
   <xs:simpleType name="positiveInteger">
     <xs:restriction base="xs:integer">
       <xs:minInclusive value="0"/>
@@ -9,11 +8,9 @@
 
   <xs:simpleType name="DOLType">
     <xs:restriction base="xs:string">
-      <!-- Adicione restrições específicas, se necessário -->
     </xs:restriction>
   </xs:simpleType>
 
-  <!-- Definição dos elementos -->
   <xs:element name="ElectricCars">
     <xs:complexType>
       <xs:sequence>
@@ -23,7 +20,6 @@
         <xs:element name="ElectricUtility" type="ElectricUtilityType"/>
       </xs:sequence>
     </xs:complexType>
-    <!-- Adicionando validação de chave única para Car -->
     <xs:key name="uniqueCarId">
       <xs:selector xpath=".//Car"/>
       <xs:field xpath="@id"/>

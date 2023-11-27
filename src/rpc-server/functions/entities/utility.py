@@ -1,6 +1,5 @@
 import xml.etree.ElementTree as ET
 
-# Definindo a classe Utility
 class Utility:
 
     def __init__(self, name):
@@ -9,8 +8,8 @@ class Utility:
         self._name = name
 
     def to_xml(self):
-        el = ET.Element("Utility")  # Criando um elemento XML para representar o utilitário
-        el.set("id", str(self._id))  # Atribuindo atributos ID e name ao elemento
+        el = ET.Element("Utility") 
+        el.set("id", str(self._id))  
         el.set("name", self._name)
         return el
 

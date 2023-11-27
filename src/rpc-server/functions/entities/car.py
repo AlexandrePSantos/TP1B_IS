@@ -14,8 +14,8 @@ class Car:
         self._city = city
 
     def to_xml(self):
-        el = ET.Element("Car")  # Criando um elemento XML para representar o utilitário
-        el.set("id", str(self._id))  # Atribuindo atributos ID e name ao elemento
+        el = ET.Element("Car")  
+        el.set("id", str(self._id))  
         el.set("DOL", self._dol)
         el.set("VIN", self._vin)
         el.set("year", self._modyear)

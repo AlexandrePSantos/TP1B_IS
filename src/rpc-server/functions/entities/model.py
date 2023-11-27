@@ -14,8 +14,8 @@ class Model:
         self._cars.append(car)
 
     def to_xml(self):
-        el = ET.Element("Model")  # Criando um elemento XML para representar o utilitário
-        el.set("id", str(self._id))  # Atribuindo atributos ID e name ao elemento
+        el = ET.Element("Model")  
+        el.set("id", str(self._id))  
         el.set("name", self._name)
         el.set("type", str(self._etype))
         

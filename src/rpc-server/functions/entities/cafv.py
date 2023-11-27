@@ -1,6 +1,5 @@
 import xml.etree.ElementTree as ET
 
-# Definindo a classe CafvEligibility
 class Cafv:
 
     def __init__(self, name):
@@ -9,8 +8,8 @@ class Cafv:
         self._name = name
 
     def to_xml(self):
-        el = ET.Element("Eligibility")  # Criando um elemento XML para representar a elegibilidade
-        el.set("id", str(self._id))  # Atribuindo atributos ID e name ao elemento
+        el = ET.Element("Eligibility")  
+        el.set("id", str(self._id))  
         el.set("name", self._name)
         return el
 
