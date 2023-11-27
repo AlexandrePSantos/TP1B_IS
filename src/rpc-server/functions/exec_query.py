@@ -1,6 +1,8 @@
 import psycopg2
 
-def execute_query(query, params=None, fetch=True):
+def execute_query(query, params=None, fetch=False):
+    connection = None
+    cursor = None
     try:
         connection = psycopg2.connect(user="is",
                                       password="is",
@@ -10,15 +12,12 @@ def execute_query(query, params=None, fetch=True):
 
         cursor = connection.cursor()
         cursor.execute(query, params)
-
+        connection.commit()
+        
         if fetch:
-            result = cursor.fetchall()
-            return result
-        else:
-            connection.commit()
-
+            return cursor.fetchall()
     except (Exception, psycopg2.Error) as error:
-        print("Failed to execute query:", error)
+        print("Failed to fetch data", error)
 
     finally:
         if connection:

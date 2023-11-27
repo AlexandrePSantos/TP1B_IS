@@ -39,7 +39,8 @@ while True:
         
     elif (op == '6'):
         print("Search car by id")
-        server.softDelete(input("Id of the car you want to search for: "))
+        output = server.releases_from_car_by_id(input("Id of the car you want to search for: "))
+        print(output)
  
     elif (op == '0'):
         print("Exiting...")
