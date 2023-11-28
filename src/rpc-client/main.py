@@ -11,6 +11,10 @@ while True:
     print("4 - List files from the database")
     print("5 - Soft-delete file from the database")
     print("6 - Search car by id")
+    print("7 - See how many cars a maker has")
+    print("8 - Search car by id")
+    print("9 - Search car by id")
+    print("10 - Search car by id")
     print("0 - Exit")
 
     op = str(input("Select an option: "))
@@ -41,7 +45,27 @@ while True:
         print("Search car by id")
         output = server.releases_from_car_by_id(input("Id of the car you want to search for: "))
         print(output)
- 
+    
+    elif (op == '7'):
+        print("See how many cars a maker has")
+        output = server.num_car_Maker(input("Maker you want to search for:"))
+        print(output)
+        
+    elif (op == '8'):
+        print("Search car by id")
+        output = server.releases_from_car_by_id(input("Id of the car you want to search for: "))
+        print(output)
+        
+    elif (op == '9'):
+        print("Search car by id")
+        output = server.releases_from_car_by_id(input("Id of the car you want to search for: "))
+        print(output)
+        
+    elif (op == '10'):
+        print("Search car by id")
+        output = server.releases_from_car_by_id(input("Id of the car you want to search for: "))
+        print(output)
+        
     elif (op == '0'):
         print("Exiting...")
         break
