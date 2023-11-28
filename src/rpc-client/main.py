@@ -12,7 +12,7 @@ while True:
     print("5 - Soft-delete file from the database")
     print("6 - Search car by id")
     print("7 - See how many cars a maker has")
-    print("8 - Search car by id")
+    print("8 - Search car by Model")
     print("9 - Search car by id")
     print("10 - Search car by id")
     print("0 - Exit")
@@ -52,8 +52,8 @@ while True:
         print(output)
         
     elif (op == '8'):
-        print("Search car by id")
-        output = server.releases_from_car_by_id(input("Id of the car you want to search for: "))
+        print("Search car by Model")
+        output = server.releases_from_car_by_Model(input("Model of the car you want to search for: "))
         print(output)
         
     elif (op == '9'):
