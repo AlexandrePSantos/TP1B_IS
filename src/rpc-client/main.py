@@ -12,9 +12,15 @@ while True:
     print("5 - Soft-delete file from the database")
     print("6 - Search car by id")
     print("7 - See how many cars of a certain model a maker has")
+<<<<<<< Updated upstream
     print("8 - Find the maker and model of cars that have been referenced in a specific city:")
     print("9 - Cars before year 2019 and eligible for HOV lane")
     print("10 - Amount of cars of type: Battery Electric Vehicle (BEV)")
+=======
+    print("8 - Search car by Model")
+    print("9 - Cars before year and CAFVEligibility")
+    print("10 - Search car by id")
+>>>>>>> Stashed changes
     print("0 - Exit")
 
     op = str(input("Select an option: "))
@@ -60,8 +66,10 @@ while True:
         print(output)
         
     elif (op == '9'):
-        print("Cars before year 2019 and eligible for HOV lane")
-        output = server.cars_before_year_and_eligibility(2019, "Clean Alternative Fuel Vehicle Eligible")
+        print("Cars before year and eligible for HOV lane")
+        year = input("Year you want to search for:")
+        eligibility = input("Eligibility you want to search for:")
+        output = server.cars_to_year_and_eligibility(year, eligibility)
         print(output)
         
     elif (op == '10'):
