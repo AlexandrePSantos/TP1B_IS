@@ -12,7 +12,7 @@ while True:
     print("5 - Soft-delete file from the database")
     print("6 - Search car by id")
     print("7 - See how many cars of a certain model a maker has")
-    print("8 - Find the maker and model of cars that have been referenced in a specific city more than a certain number of times:")
+    print("8 - Find the maker and model of cars that have been referenced in a specific city:")
     print("9 - Cars before year 2019 and eligible for HOV lane")
     print("10 - Search car by id")
     print("0 - Exit")
