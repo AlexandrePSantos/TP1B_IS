@@ -14,7 +14,7 @@ def importFile(file_path, xml_name):
 
         with open(file_path, encoding='utf-8') as file:
             data = file.read()
-            cursor.execute("INSERT INTO imported_documents(file_name,xml) VALUES(%s,%s)", (xml_name, data))
+            cursor.execute("INSERT INTO imported_documents(file_name,xml,is_deleted) VALUES(%s,%s,FALSE)", (xml_name, data))
             connection.commit()
             
             print("File imported successfully!")  

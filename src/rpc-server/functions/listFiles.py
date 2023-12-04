@@ -11,7 +11,7 @@ def listFiles():
                                       database="is")
 
         cursor = connection.cursor()
-        cursor.execute("SELECT id, file_name, created_on FROM imported_documents")
+        cursor.execute("SELECT id, file_name, created_on, is_deleted FROM imported_documents")
         connection.commit()
         
         print("Files in the database:")

@@ -1,10 +1,12 @@
+DROP TABLE IF EXISTS public.imported_documents;
+
 CREATE TABLE public.imported_documents (
-	id              serial PRIMARY KEY,
-	file_name       VARCHAR(250) UNIQUE NOT NULL,
-	xml             XML NOT NULL,
-	created_on      TIMESTAMP NOT NULL DEFAULT NOW(),
-	updated_on      TIMESTAMP NOT NULL DEFAULT NOW(),
-	is_deleted		BOOLEAN NOT NULL DEFAULT FALSE
+    id              serial PRIMARY KEY,
+    file_name       VARCHAR(250) UNIQUE NOT NULL,
+    xml             XML NOT NULL,
+	is_deleted		BOOLEAN NOT NULL DEFAULT FALSE,
+    created_on      TIMESTAMP NOT NULL DEFAULT NOW(),
+    updated_on      TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE public.teachers (
