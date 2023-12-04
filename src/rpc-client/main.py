@@ -12,7 +12,7 @@ while True:
     print("5 - Soft-delete file from the database")
     print("6 - Search car by id")
     print("7 - See how many cars of a certain model a maker has")
-    print("8 - Search car by Model")
+    print("8 - Find the maker and model of cars that have been referenced in a specific city more than a certain number of times:")
     print("9 - Cars before year 2019 and eligible for HOV lane")
     print("10 - Search car by id")
     print("0 - Exit")
@@ -54,8 +54,9 @@ while True:
         print(output)
         
     elif (op == '8'):
-        print("Search car by Model")
-        output = server.releases_from_car_by_Model(input("Model of the car you want to search for: "))
+        print("Search car by City")
+        city_ref = input("City reference you want to search for: ")
+        output = server.frequently_referenced_cars_in_city(city_ref)
         print(output)
         
     elif (op == '9'):
