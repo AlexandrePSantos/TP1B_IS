@@ -13,7 +13,7 @@ while True:
     print("6 - Search car by id")
     print("7 - See how many cars of a certain model a maker has")
     print("8 - Search car by Model")
-    print("9 - Search car by id")
+    print("9 - Cars before year 2019 and eligible for HOV lane")
     print("10 - Search car by id")
     print("0 - Exit")
 
@@ -59,8 +59,8 @@ while True:
         print(output)
         
     elif (op == '9'):
-        print("Search car by id")
-        output = server.releases_from_car_by_id(input("Id of the car you want to search for: "))
+        print("Cars before year 2019 and eligible for HOV lane")
+        output = server.cars_before_year_and_eligibility(2019, "Clean Alternative Fuel Vehicle Eligible")
         print(output)
         
     elif (op == '10'):
