@@ -61,7 +61,7 @@ while True:
         
     elif (op == '9'):
         print("Cars before year 2019 and eligible for HOV lane")
-        output = server.cars_before_year_and_eligibility(2019, "Clean Alternative Fuel Vehicle Eligible")
+        output = server.cars_before_year_and_eligibility("2019", "1")
         print(output)
         
     elif (op == '10'):

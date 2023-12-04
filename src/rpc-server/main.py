@@ -10,7 +10,7 @@ from functions.softDelete import softDelete
 from functions.query1 import releases_from_car_by_id
 from functions.query2 import num_car_Maker
 from functions.query3 import frequently_referenced_cars_in_city
-from functions.query4 import cars_to_year_and_eligibility
+from functions.query4 import cars_before_year_and_eligibility
 from functions.query5 import cars_of_type_BEV
 
 class RequestHandler(SimpleXMLRPCRequestHandler):
@@ -44,7 +44,7 @@ with SimpleXMLRPCServer(('0.0.0.0', 9000), requestHandler=RequestHandler, allow_
     server.register_function(releases_from_car_by_id)
     server.register_function(num_car_Maker)
     server.register_function(frequently_referenced_cars_in_city)
-    server.register_function(cars_to_year_and_eligibility)
+    server.register_function(cars_before_year_and_eligibility)
     server.register_function(cars_of_type_BEV)
     
     # start the server
