@@ -14,7 +14,7 @@ while True:
     print("7 - See how many cars of a certain model a maker has")
     print("8 - Find the maker and model of cars that have been referenced in a specific city:")
     print("9 - Cars before year 2019 and eligible for HOV lane")
-    print("10 - Search car by id")
+    print("10 - Cars with highest range with type: Battery Electric Vehicle (BEV)")
     print("0 - Exit")
 
     op = str(input("Select an option: "))
@@ -65,9 +65,7 @@ while True:
         print(output)
         
     elif (op == '10'):
-        print("Search car by id")
-        output = server.releases_from_car_by_id(input("Id of the car you want to search for: "))
-        print(output)
+        print(server.cars_with_highest_range())
         
     elif (op == '0'):
         print("Exiting...")
